@@ -1,0 +1,453 @@
+import 'package:flutter/material.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+// This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'CV Rehan',
+      home: new MyHomePage(title: 'Biography'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => new _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<int> data = [];
+  int currentLength = 0;
+
+  final int increment = 3;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    _loadMore();
+    super.initState();
+  }
+
+  Future _loadMore() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    // Add in an artificial delay
+    await new Future.delayed(const Duration(seconds: 2));
+    for (var i = currentLength; i <= currentLength + increment; i++) {
+      data.add(i);
+    }
+    setState(() {
+      isLoading = false;
+      currentLength = data.length;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.indigo,
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Colors.purple,
+      ),
+      body: LazyLoadScrollView(
+        isLoading: isLoading,
+        onEndOfPage: () => _loadMore(),
+
+        child:
+        ListView(
+           children: [Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                Container(
+                  decoration:BoxDecoration(color:Colors.blueGrey),
+                  child:
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:
+                        <Widget>[
+                          SizedBox(width: 8.0),
+                          Text("Software Engineer ", style:
+                          TextStyle(fontSize: 26,color: Colors.black),),
+                        ],
+                      ),
+
+                      Text(
+                        "constituting of technology lovers and computer "
+                            "in mind to provide well written, well "
+                            "thought and well explained solutions for selected"
+                            " questions. The core team of five super "
+                            " constituting of technology lovers and computer"
+                            " science enthusiasts have been constantly working"
+                            " in this direction .", style:
+                      TextStyle(fontSize: 16,color: Colors.black54),),
+                    ],
+
+                  ), ),
+              ),
+            ),
+             Card(
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child:
+                 Container(
+                   decoration:BoxDecoration(color:Colors.blueGrey),
+                   child:
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: <Widget>[
+
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+                           SizedBox(width: 8.0),
+                           Text("Work Experience ", style:
+                           TextStyle(fontSize: 26,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.4,
+                               center: Text("40.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+
+                       Text(
+                         " science enthusiasts have been constantly working"
+                             "in mind to provide well written, well "
+                             "thought and well explained solutions for selected"
+                             " questions. The core team of five super "
+                             " constituting of technology lovers and computer"
+                             " science enthusiasts have been constantly working"
+                             " in this direction .", style:
+                       TextStyle(fontSize: 16,color: Colors.black54),),
+                     ],
+
+                   ), ),
+               ),
+             ),
+             Card(
+
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child:
+                 Container(
+                   decoration:BoxDecoration(color:Colors.blueGrey),
+                   child:
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: <Widget>[
+
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("Educational Qualifications ", style:
+                           TextStyle(fontSize: 26,),),
+                         ],
+                       ),
+
+                       Text(
+                         " constituting of technology lovers and computer"
+                             "in mind to provide well written, well "
+                             "thought and well explained solutions for selected"
+                             " questions. The core team of five super geeks"
+                             " constituting of technology lovers and computer"
+                             " science enthusiasts have been constantly working"
+                             " in this direction .", style:
+                       TextStyle(fontSize: 16,color: Colors.black54),),
+                     ],
+
+                   ), ),
+               ),
+             ),
+             Card(
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child:
+                 Container(
+                   decoration:BoxDecoration(color:Colors.blueGrey),
+                   child:
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: <Widget>[
+
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+                           SizedBox(width: 8.0),
+                           Text("Skills ", style:
+                           TextStyle(fontSize: 26,),),
+
+                         ],
+                       ),
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+                           SizedBox(width: 8.0),
+                           Text("Durability ", style:
+                           TextStyle(fontSize: 16,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.8,
+                               center: Text("80.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("Reading ", style:
+                           TextStyle(fontSize: 16,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.6,
+                               center: Text("60.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("Sport ", style:
+                           TextStyle(fontSize: 16,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.7,
+                               center: Text("70.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+
+
+                     ],
+
+                   ), ),
+               ),
+             ),
+             Card(
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child:
+                 Container(
+                   decoration:BoxDecoration(color:Colors.blueGrey),
+                   child:
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: <Widget>[
+
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("Languages ", style:
+                           TextStyle(fontSize: 26,),),
+                         ],
+                       ),
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("Arabic ", style:
+                           TextStyle(fontSize: 16,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.10,
+                               center: Text("100.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+                       Row(
+                         crossAxisAlignment: CrossAxisAlignment.center,
+                         children:
+                         <Widget>[
+
+                           SizedBox(width: 8.0),
+                           Text("English ", style:
+                           TextStyle(fontSize: 16,),),
+                           Padding(
+                             padding: EdgeInsets.all(10.0),
+                             child: new LinearPercentIndicator(
+                               width:200.0,
+                               // MediaQuery.of(context).size.width -2,
+                               animation: true,
+                               lineHeight: 20.0,
+                               animationDuration: 100,
+                               percent: 0.7,
+                               center: Text("70.0%"),
+                               linearStrokeCap: LinearStrokeCap.roundAll,
+                               progressColor: Colors.black12,
+                             ),
+                           ),
+                         ],
+                       ),
+
+                       Text(
+                         "thought and well explained solutions for selected"
+                             "in mind to provide well written, well "
+                             "thought and well explained solutions for selected"
+                             " questions. The core team of five super geeks"
+                             " constituting of technology lovers and computer"
+                             " science enthusiasts have been constantly working"
+                             " in this direction .", style:
+                       TextStyle(fontSize: 14,color: Colors.black54),),
+                     ],
+
+                   ), ),
+               ),
+             ),],
+          // itemCount: data.length,
+          // itemBuilder: (context, position) {
+          //   return DemoItem(position);
+          // },
+       ),
+      ),
+        drawer: Drawer(
+          child:Container(
+            color: Colors.white10,
+            child: ListView(
+            padding: EdgeInsets.zero,
+
+            children: <Widget>[
+              SizedBox(
+
+                height: 300,
+                child: DrawerHeader(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage('https://picsum.photos/250?image=9'),
+                      ),
+                      Text('Rehan AL-salami'),
+                      Text('RehanAbdullad1258@gmail.com'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.person),
+                            onPressed: () {
+                              // Navigate to user profile
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.mail),
+                            onPressed: () {
+                              // Navigate to contact form
+                            },
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.share),
+                            onPressed: () {
+                              // Share app
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.phone),
+                title: Text('Phone Number'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.location_on),
+                title: Text('Location'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),),
+        )
+    );
+  }
+}
+
